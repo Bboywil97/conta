@@ -1,0 +1,386 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 5px;
+}
+
+nav {
+    background-color: var(--dark-color);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    flex: 1;
+    text-align: center;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--secondary-color);
+}
+
+nav ul li a.active {
+    background-color: var(--secondary-color);
+    font-weight: bold;
+}
+
+nav ul li a i {
+    margin-right: 8px;
+}
+
+.content-section {
+    display: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.content-section.active {
+    display: block;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--light-color);
+}
+
+h3 {
+    color: var(--dark-color);
+    margin: 15px 0;
+}
+
+.form-container {
+    background-color: var(--light-color);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+table tr:hover {
+    background-color: #f5f5f5;
+}
+
+table .action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+/* Estilos para columnas Debe/Haber */
+#transactions-table td:nth-child(4),
+#transactions-table th:nth-child(4),
+#journal-table td:nth-child(3),
+#journal-table th:nth-child(3),
+#ledger-table td:nth-child(3),
+#ledger-table th:nth-child(3) {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+#transactions-table td:nth-child(5),
+#transactions-table th:nth-child(5),
+#journal-table td:nth-child(4),
+#journal-table th:nth-child(4),
+#ledger-table td:nth-child(4),
+#ledger-table th:nth-child(4) {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+.cash-count-container {
+    display: flex;
+    gap: 20px;
+}
+
+.cash-count-form,
+.cash-count-result {
+    flex: 1;
+    background-color: var(--light-color);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.income-statement-result {
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.statement-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.statement-header h3 {
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+.statement-header h4 {
+    font-size: 20px;
+    color: var(--dark-color);
+    margin: 10px 0;
+}
+
+.income-statement-result table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.income-statement-result table td {
+    padding: 8px 15px;
+}
+
+.income-statement-result table tr.subtotal td {
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+}
+
+.income-statement-result table tr.grand-total td {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: var(--light-color);
+}
+
+.success {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.danger {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+#transaction-breakdown-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#transaction-breakdown-table th,
+#transaction-breakdown-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#transaction-breakdown-table th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#transaction-breakdown-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.ledger-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ledger-account {
+    flex: 1 1 calc(50% - 20px);
+    background-color: var(--light-color);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ledger-account h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.ledger-t {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid var(--dark-color);
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.ledger-t .debit,
+.ledger-t .credit {
+    width: 48%;
+}
+
+.ledger-t .debit ul,
+.ledger-t .credit ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ledger-t .debit ul li,
+.ledger-t .credit ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.ledger-t .debit ul li:last-child,
+.ledger-t .credit ul li:last-child {
+    border-bottom: none;
+}
+
+.ledger-t .total {
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+    
+    .cash-count-container {
+        flex-direction: column;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeExpress SA de CV - Sistema Contable</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-calculator"></i> TypeExpress SA de CV</h1>
+            <p>Sistema de Arqueo de Caja y Estado de Resultados</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#" class="active" data-section="transactions"><i class="fas fa-exchange-alt"></i> Transacciones</a></li>
+                <li><a href="#" data-section="journal"><i class="fas fa-book"></i> Diario</a></li>
+                <li><a href="#" data-section="ledger"><i class="fas fa-th-list"></i> Mayor</a></li>
+                <li><a href="#" data-section="trial-balance"><i class="fas fa-balance-scale"></i> Balanza</a></li>
+                <li><a href="#" data-section="cash-count"><i class="fas fa-cash-register"></i> Arqueo de Caja</a></li>
+                <li><a href="#" data-section="income-statement"><i class="fas fa-chart-line"></i> Estado de Resultados</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Sección de Transacciones -->
+            <section id="transactions" class="content-section active">
+                <h2><i class="fas fa-exchange-alt"></i> Registro de Transacciones</h2>
+                <div class="form-container">
+                    <form id="transaction-form">
+                        <div class="form-group">
+                            <label for="transaction-date">Fecha:</label>
+                            <input type="date" id="transaction-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction-concept">Concepto:</label>
+                            <input type="text" id="transaction-concept" placeholder="Ej: Venta al contado" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="debit-amount">Debe:</label>
+                                <input type="number" id="debit-amount" step="0.01" min="0" placeholder="0.00">
+                            </div>
+                            <div class="form-group">
+                                <label for="credit-amount">Haber:</label>
+                                <input type="number" id="credit-amount" step="0.01" min="0" placeholder="0.00">
+                            </div>
+                        </div>
+                        <input type="hidden" id="transaction-id" value="">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Transacción</button>
+                        <button type="button" id="cancel-edit" class="btn btn-secondary" style="display: none;"><i class="fas fa-times"></i> Cancelar</button>
+                    </form>
+                </div>
+                <div class="table-container">
+                    <h3>Transacciones Registradas</h3>
+                    <table id="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Concepto</th>
+                                <th>Debe</th>
+                                <th>Haber</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección de Diario -->
+            <section id="journal" class="content-section">
+                <h2><i class="fas fa-book"></i> Libro Diario</h2>
+                <div class="table-container">
+                    <table id="journal-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Concepto</th>
+                                <th>Debe</th>
+                                <th>Haber</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección de Mayor -->
+            <section id="ledger" class="content-section">
+                <h2><i class="fas fa-th-list"></i> Libro Mayor en T</h2>
+                <div id="ledger-container" class="ledger-container">
+                    <!-- Aquí se generarán dinámicamente las cuentas en T -->
+                </div>
+            </section>
+
+            <!-- Sección de Balanza de Comprobación -->
+            <section id="trial-balance" class="content-section">
+                <h2><i class="fas fa-balance-scale"></i> Balanza de Comprobación</h2>
+                <div class="table-container">
+                    <table id="trial-balance-table">
+                        <thead>
+                            <tr>
+                                <th>Concepto</th>
+                                <th>Saldo Deudor</th>
+                                <th>Saldo Acreedor</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Total</th>
+                                <th id="total-debit">0.00</th>
+                                <th id="total-credit">0.00</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección de Arqueo de Caja -->
+            <section id="cash-count" class="content-section">
+                <h2><i class="fas fa-cash-register"></i> Arqueo de Caja</h2>
+                <div class="cash-count-container">
+                    <div class="cash-count-form">
+                        <h3>Registrar Arqueo</h3>
+                        <form id="cash-count-form">
+                            <div class="form-group">
+                                <label for="cash-count-date">Fecha:</label>
+                                <input type="date" id="cash-count-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cash-count-amount">Efectivo en caja:</label>
+                                <input type="number" id="cash-count-amount" step="0.01" min="0" placeholder="0.00" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Registrar Arqueo</button>
+                        </form>
+                    </div>
+                    <div class="cash-count-result">
+                        <h3>Resultado del Arqueo</h3>
+                        <div id="cash-count-result-content">
+                            <p>Realice un arqueo para ver los resultados</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección de Estado de Resultados -->
+            <section id="income-statement" class="content-section">
+                <h2><i class="fas fa-chart-line"></i> Estado de Resultados</h2>
+                <div class="form-group">
+                    <label for="income-statement-period">Periodo:</label>
+                    <select id="income-statement-period">
+                        <option value="month">Mes actual</option>
+                        <option value="quarter">Trimestre actual</option>
+                        <option value="year">Año actual</option>
+                        <option value="custom">Personalizado</option>
+                    </select>
+                    <div id="custom-period" style="display: none; margin-top: 10px;">
+                        <label for="start-date">Desde:</label>
+                        <input type="date" id="start-date">
+                        <label for="end-date" style="margin-left: 10px;">Hasta:</label>
+                        <input type="date" id="end-date">
+                    </div>
+                </div>
+                <button id="generate-income-statement" class="btn btn-primary"><i class="fas fa-calculator"></i> Generar Estado</button>
+                <div class="income-statement-result" id="income-statement-result">
+                    <div class="statement-header">
+                        <h3>TypeExpress SA de CV</h3>
+                        <h4>Estado de Resultados</h4>
+                        <p id="statement-period">Al 31 de diciembre de 2023</p>
+                    </div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Ingresos</td>
+                                <td id="income-amount">0.00</td>
+                            </tr>
+                            <tr class="subtotal">
+                                <td>Menos: Gastos</td>
+                                <td id="expenses-amount">0.00</td>
+                            </tr>
+                            <tr class="grand-total">
+                                <td>Utilidad Neta</td>
+                                <td id="net-income">0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Nueva tabla para el desglose de transacciones -->
+                    <h4>Desglose de Transacciones</h4>
+                    <div class="table-container">
+                        <table id="transaction-breakdown-table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Concepto</th>
+                                    <th>Debe</th>
+                                    <th>Haber</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
